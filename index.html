@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4b0710">
+  <meta name="description" content="Beshoy & Marina — Friends Gathering">
+  <title>Beshoy & Marina | Friends Gathering</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="invitation-locked">
+
+  <!-- =====================================================
+       OPENING SCREEN
+       The website is hidden behind the curtains until
+       the visitor presses OPEN INVITATION.
+       The same click starts the music, which avoids
+       browser autoplay restrictions.
+       ===================================================== -->
+  <div id="opening-screen" aria-label="Open wedding invitation">
+
+    <div class="opening-glow"></div>
+
+    <div class="opening-curtain left"></div>
+    <div class="opening-curtain right"></div>
+
+    <div class="opening-stars" aria-hidden="true">
+      <span class="opening-star">✦</span>
+      <span class="opening-star">✧</span>
+      <span class="opening-star">✦</span>
+      <span class="opening-star">✧</span>
+      <span class="opening-star">⋆</span>
+      <span class="opening-star">⋆</span>
+    </div>
+
+    <div class="opening-content">
+
+      <p class="opening-small">A SPECIAL NIGHT FOR THE GIRLS</p>
+
+      <div class="opening-monogram">
+        B <span class="opening-heart">♥</span> M
+      </div>
+
+      <div class="opening-title">
+        Girls Gathering
+      </div>
+
+      <button
+        id="openInvitation"
+        class="open-invitation"
+        type="button"
+      >
+        OPEN INVITATION
+      </button>
+
+      <p class="opening-hint">
+        Tap to open ♡
+      </p>
+
+    </div>
+  </div>
+
+
+  <div class="petals" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="#home">B <span>♥</span> M</a>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#details">Details</a>
+      <a href="#gallery">Gallery</a>
+      <a class="nav-rsvp" href="#rsvp">RSVP</a>
+    </nav>
+
+    <a class="girls-pill" href="#rsvp">Girls Only ♡</a>
+  </header>
+
+
+  <main id="home">
+
+    <!-- HERO -->
+    <section class="hero section">
+
+      <!-- Dancing girl -->
+      <div class="dancer-wrap reveal">
+        <div class="dancer-glow"></div>
+
+        <img
+          class="dancer"
+          src="images/dancer.png"
+          alt="Dancing girl"
+        >
+
+        <div class="dancer-caption">
+          <span>Dance</span>
+          <span>Laugh</span>
+          <span>Henna</span>
+          <span>Repeat ♡</span>
+        </div>
+      </div>
+
+
+      <!-- Main invitation text -->
+      <div class="hero-copy reveal">
+
+        <p class="eyebrow">
+          YOU'RE INVITED TO OUR
+        </p>
+
+        <h1>
+          Girls
+          <br>
+          <span>Gathering</span>
+        </h1>
+
+        <p class="subtitle">
+          HENNA VIBES · GOOD COMPANY
+          <br>
+          BEAUTIFUL MEMORIES
+        </p>
+
+        <p class="couple-script">
+          Beshoy &amp; Marina
+        </p>
+
+        <div class="ornament">
+          <i></i>
+          <span>♥</span>
+          <i></i>
+        </div>
+
+        <p class="small-caps">
+          A NIGHT FOR THE GIRLS
+        </p>
+
+      </div>
+
+
+      <!-- Couple photo -->
+      <div class="hero-photo reveal delay">
+
+        <img
+          src="images/couple1.jpg"
+          alt="Beshoy and Marina"
+        >
+
+        <div class="photo-frame"></div>
+
+        <p class="side-note">
+          Same<br>
+          Girls<br>
+          Forever ♡
+        </p>
+
+      </div>
+
+
+      <!-- Countdown -->
+      <div class="countdown reveal">
+
+        <div>
+          <strong id="days">00</strong>
+          <span>Days</span>
+        </div>
+
+        <div>
+          <strong id="hours">00</strong>
+          <span>Hours</span>
+        </div>
+
+        <div>
+          <strong id="minutes">00</strong>
+          <span>Minutes</span>
+        </div>
+
+        <div>
+          <strong id="seconds">00</strong>
+          <span>Seconds</span>
+        </div>
+
+      </div>
+
+      <p class="count-label">
+        COUNTING DOWN TO A SPECIAL NIGHT ♡
+      </p>
+
+    </section>
+
+
+    <!-- EVENT DETAILS -->
+    <section
+      id="details"
+      class="details-card section reveal"
+    >
+
+      <div class="detail">
+
+        <span class="icon">♧</span>
+
+        <p class="label">
+          DATE
+        </p>
+
+        <h3>
+          25
+        </h3>
+
+        <p>
+          Save the date ♡
+        </p>
+
+      </div>
+
+
+      <div class="detail">
+
+        <span class="icon">◷</span>
+
+        <p class="label">
+          TIME
+        </p>
+
+        <h3>
+          5:00 PM
+        </h3>
+
+        <p>
+          Come ready to celebrate
+        </p>
+
+      </div>
+
+
+      <!-- Location intentionally not linked yet -->
+      <div
+        class="detail location-disabled"
+        aria-label="Location coming soon"
+      >
+
+        <span class="icon">⌖</span>
+
+        <p class="label">
+          LOCATION
+        </p>
+
+        <h3>
+          COMING SOON
+        </h3>
+
+        <p>
+          Location details will be announced
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- VIBES -->
+    <section class="vibes section">
+
+      <div class="vibe reveal">
+
+        <span>✺</span>
+
+        <h3>
+          HENNA VIBES
+        </h3>
+
+        <p>
+          Traditional touches, beautiful details.
+        </p>
+
+      </div>
+
+
+      <div class="vibe reveal">
+
+        <span>♫</span>
+
+        <h3>
+          MUSIC &amp; DANCE
+        </h3>
+
+        <p>
+          Good music, dancing and unforgettable laughs.
+        </p>
+
+      </div>
+
+
+      <div class="vibe reveal">
+
+        <span>♨</span>
+
+        <h3>
+          DELICIOUS FOOD
+        </h3>
+
+        <p>
+          Good food, great company.
+        </p>
+
+      </div>
+
+
+      <aside class="dress reveal">
+
+        <p>
+          Dress Code
+        </p>
+
+        <strong>
+          Something Red
+          <br>
+          &amp; Fabulous
+        </strong>
+
+        <span>
+          ♡
+        </span>
+
+      </aside>
+
+    </section>
+
+
+    <!-- GALLERY -->
+    <section
+      id="gallery"
+      class="gallery section"
+    >
+
+      <div class="section-heading reveal">
+
+        <p class="eyebrow">
+          OUR FAVORITE MOMENTS
+        </p>
+
+        <h2>
+          Gallery
+        </h2>
+
+      </div>
+
+
+      <div class="gallery-grid">
+
+        <div class="gallery-item large reveal">
+          <img
+            src="images/couple1.jpg"
+            alt="Beshoy and Marina"
+          >
+        </div>
+
+        <div class="gallery-item reveal">
+          <img
+            src="images/photo-2.jpg"
+            alt="Friends gathering memory"
+          >
+        </div>
+
+        <div class="gallery-item reveal">
+          <img
+            src="images/photo-3.jpg"
+            alt="Celebration detail"
+          >
+        </div>
+
+        <div class="gallery-item reveal">
+          <img
+            src="images/photo-4.jpg"
+            alt="Beautiful memory"
+          >
+        </div>
+
+        <div class="gallery-item reveal">
+          <img
+            src="images/photo-5.jpg"
+            alt="Beautiful memory"
+          >
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RSVP -->
+    <section
+      id="rsvp"
+      class="rsvp section reveal"
+    >
+
+      <div class="rsvp-card">
+
+        <p class="eyebrow">
+          COME CELEBRATE WITH US
+        </p>
+
+        <h2>
+          Will you join us?
+        </h2>
+
+        <p>
+          Your presence will make our girls' night
+          even more special.
+        </p>
+
+        <a
+          class="rsvp-button"
+          href="https://wa.me/?text=I%20would%20love%20to%20attend%20Beshoy%20and%20Marina%27s%20friends%20gathering"
+          target="_blank"
+          rel="noopener"
+        >
+          CONFIRM YOUR ATTENDANCE ♥
+        </a>
+
+        <span class="rsvp-note">
+          Girls only, please ♡
+        </span>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-mark">
+      B <span>♥</span> M
+    </div>
+
+    <p>
+      GOOD FRIENDS. BEAUTIFUL NIGHTS.
+      <br>
+      FOREVER GRATEFUL.
+    </p>
+
+    <small>
+      BESHOY &amp; MARINA · 2026
+    </small>
+
+  </footer>
+
+
+  <!-- MUSIC -->
+  <button
+    class="music-button"
+    id="musicButton"
+    aria-label="Toggle music"
+  >
+    ♫ <span>MUSIC</span>
+  </button>
+
+  <audio
+    id="music"
+    loop
+    preload="auto"
+  >
+    <source
+      src="audio/music.mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
