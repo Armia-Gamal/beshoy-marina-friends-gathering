@@ -182,49 +182,61 @@ const openingScreen =
 const openInvitation =
   document.getElementById("openInvitation");
 
+let invitationIsOpening = false;
 
-const openTheInvitation = async () => {
+const finishOpening = () => {
 
-  /*
-    IMPORTANT:
-    Start music BEFORE opening the curtains.
+  openingScreen.setAttribute(
+    "aria-hidden",
+    "true"
+  );
 
-    Because this function is called directly by
-    the user's click, browsers allow audio playback.
-  */
+  openingScreen.remove();
 
-  await startMusic();
+};
 
-
-  /*
-    Give the audio a tiny moment to begin,
-    then open the curtains.
-  */
-
-  setTimeout(() => {
-
-    openingScreen.classList.add("is-opening");
-
-    document.body.classList.remove(
-      "invitation-locked"
-    );
-
-  }, 180);
-
+const openTheInvitation = () => {
 
   /*
-    Remove the opening screen from the DOM
-    after the animation has completed.
+    Do not let repeated taps queue multiple animations or audio requests.
   */
 
-  setTimeout(() => {
+  if (invitationIsOpening) {
+    return;
+  }
 
-    openingScreen.setAttribute(
-      "aria-hidden",
-      "true"
-    );
+  invitationIsOpening = true;
+  openInvitation.disabled = true;
 
-  }, 1600);
+  /*
+    Start music directly from the visitor's tap so browser audio policies
+    still allow it, but never wait for buffering or decoding before showing
+    the opening animation. On slower phones, music.play() may take a while
+    to resolve.
+
+    startMusic() handles a missing or unsupported audio file itself.
+  */
+
+  void startMusic();
+
+
+  /*
+    Open the interface immediately so the tap always gets a prompt response.
+  */
+
+  openingScreen.classList.add("is-opening");
+
+  document.body.classList.remove(
+    "invitation-locked"
+  );
+
+
+
+  /*
+    Free the overlay and its animations after the curtains finish opening.
+  */
+
+  setTimeout(finishOpening, 1600);
 
 };
 

@@ -1601,8 +1601,13 @@ body.invitation-locked {
     transition-duration: .55s;
   }
 
+  .opening-glow {
+    filter: none;
+  }
+
   .opening-curtain {
     transition-duration: .85s;
+    box-shadow: inset 0 0 36px #0008;
   }
 
   .opening-content {
@@ -1629,5 +1634,23 @@ body.invitation-locked {
     font-size: 10px;
     letter-spacing: 1.5px;
     white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .dancer,
+  .petal,
+  .opening-star {
+    animation: none;
+  }
+
+  #opening-screen,
+  .opening-curtain,
+  .opening-content {
+    transition-duration: .01ms;
   }
 }

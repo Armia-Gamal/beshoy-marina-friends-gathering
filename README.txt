@@ -8,7 +8,7 @@ Opening behavior:
 5. The website appears.
 
 Put your music at:
-audio/music.mp3
+audio/music.m4a
 
 The HTML also expects:
 images/couple1.jpg
