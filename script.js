@@ -263,7 +263,7 @@ musicButton.addEventListener(
       if (!started) {
 
         alert(
-          "Add your music file at audio/music.mp3 first."
+          "Add your music file at audio/music.m4a first."
         );
 
       }
@@ -296,7 +296,7 @@ music.addEventListener(
     updateMusicButton();
 
     console.warn(
-      "Music file not found. Expected: audio/music.mp3"
+      "Music file not found. Expected: audio/music.m4a"
     );
 
   }

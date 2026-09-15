@@ -3,7 +3,7 @@ Beshoy & Marina — Friends Gathering
 Opening behavior:
 1. Visitor sees the curtain opening screen.
 2. Visitor clicks OPEN INVITATION.
-3. The click starts audio/music.mp3.
+3. The click starts audio/music.m4a.
 4. The curtains open.
 5. The website appears.
 
