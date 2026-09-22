@@ -135,41 +135,26 @@ const music =
 const musicButton =
   document.getElementById("musicButton");
 
-let playing = false;
-
+// Update button text to reflect actual audio state
 const updateMusicButton = () => {
+  const label = musicButton.querySelector("span");
 
-  musicButton.innerHTML = playing
-    ? '♫ <span>PAUSE</span>'
-    : '♫ <span>MUSIC</span>';
-
-};
-
-
-const startMusic = async () => {
-
-  try {
-
-    await music.play();
-
-    playing = true;
-
-    updateMusicButton();
-
-    return true;
-
-  } catch (error) {
-
-    console.warn(
-      "Music could not start:",
-      error
-    );
-
-    return false;
-
+  if (music.paused) {
+    label.textContent = "PLAY";
+    musicButton.setAttribute("aria-label", "Play music");
+  } else {
+    label.textContent = "PAUSE";
+    musicButton.setAttribute("aria-label", "Pause music");
   }
-
 };
+
+// Listen for audio state changes
+music.addEventListener("play", updateMusicButton);
+music.addEventListener("pause", updateMusicButton);
+music.addEventListener("ended", updateMusicButton);
+
+// Initialize button state
+updateMusicButton();
 
 
 /* =========================================================
@@ -195,7 +180,7 @@ const finishOpening = () => {
 
 };
 
-const openTheInvitation = () => {
+const openTheInvitation = async () => {
 
   /*
     Do not let repeated taps queue multiple animations or audio requests.
@@ -217,7 +202,15 @@ const openTheInvitation = () => {
     startMusic() handles a missing or unsupported audio file itself.
   */
 
-  void startMusic();
+  try {
+    await music.play();
+    updateMusicButton();
+  } catch (error) {
+    console.warn(
+      "Music could not start:",
+      error
+    );
+  }
 
 
   /*
@@ -254,21 +247,17 @@ openInvitation.addEventListener(
 musicButton.addEventListener(
   "click",
   async () => {
-    if (!playing) {
+    if (music.paused) {
+      // Not playing - start it
       try {
         await music.play();
-        playing = true;
-        updateMusicButton();
       } catch (error) {
         console.warn("Music could not start:", error);
-        alert("Add your music file at audio/music.m4a first.");
       }
-      return;
+    } else {
+      // Already playing - pause it
+      music.pause();
     }
-
-    music.pause();
-    playing = false;
-    updateMusicButton();
   }
 );
 
@@ -281,11 +270,7 @@ musicButton.addEventListener(
 music.addEventListener(
   "error",
   () => {
-
-    playing = false;
-
     updateMusicButton();
-
     console.warn(
       "Music file not found. Expected: audio/music.m4a"
     );
