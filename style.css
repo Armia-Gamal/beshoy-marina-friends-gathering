@@ -694,6 +694,63 @@ h1 span {
 }
 
 /* =========================
+   CELEBRATION
+========================= */
+
+.celebration {
+  padding-top: 80px;
+  padding-bottom: 100px;
+  text-align: center;
+}
+
+.celebration-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.title-line {
+  font:
+    600 14px
+    "Cormorant Garamond";
+
+  letter-spacing: 4px;
+
+  color: #d6ad91;
+
+  margin: 0;
+}
+
+.celebration-title {
+  font:
+    600 clamp(42px, 6vw, 78px)/0.85
+    "Cormorant Garamond";
+
+  letter-spacing: -3px;
+
+  margin: 25px 0;
+
+  color: #f3d9c5;
+}
+
+.celebration-title span {
+  font-weight: 400;
+
+  color: var(--gold);
+
+  font-size: clamp(42px, 6vw, 72px);
+}
+
+.celebration-subtitle {
+  font:
+    500 12px/1.6
+    "DM Sans";
+
+  letter-spacing: 2px;
+
+  color: #d8ad91;
+}
+
+/* =========================
    GALLERY
 ========================= */
 
@@ -1231,6 +1288,23 @@ footer small {
   .rsvp h2 {
     font-size: 50px;
   }
+
+  .celebration {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
+  .celebration-title {
+    font-size: 48px;
+  }
+
+  .celebration-title span {
+    font-size: 42px;
+  }
+
+  .celebration-subtitle {
+    font-size: 11px;
+  }
 }
 
 
@@ -1374,6 +1448,25 @@ footer small {
   .music-button {
     right: 15px;
     bottom: 15px;
+  }
+
+  .celebration {
+    padding-top: 50px;
+    padding-bottom: 70px;
+  }
+
+  .celebration-title {
+    font-size: 38px;
+    line-height: 1.1;
+  }
+
+  .celebration-title span {
+    font-size: 32px;
+  }
+
+  .celebration-subtitle {
+    font-size: 10px;
+    letter-spacing: 2px;
   }
 }
 

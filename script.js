@@ -1,6 +1,6 @@
 /*
   ============================================
-  BESH0Y & MARINA — FRIENDS GATHERING
+  BESH0Y & MARINA — GOODBYE SINGLE LIFE
   ============================================
 
   EVENT:
@@ -254,30 +254,21 @@ openInvitation.addEventListener(
 musicButton.addEventListener(
   "click",
   async () => {
-
     if (!playing) {
-
-      const started =
-        await startMusic();
-
-      if (!started) {
-
-        alert(
-          "Add your music file at audio/music.m4a first."
-        );
-
+      try {
+        await music.play();
+        playing = true;
+        updateMusicButton();
+      } catch (error) {
+        console.warn("Music could not start:", error);
+        alert("Add your music file at audio/music.m4a first.");
       }
-
       return;
     }
 
-
     music.pause();
-
     playing = false;
-
     updateMusicButton();
-
   }
 );
 
