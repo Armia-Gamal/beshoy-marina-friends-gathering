@@ -1,492 +1,294 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#4b0710">
-  <meta name="description" content="Beshoy & Marina — Friends Gathering">
-  <title>Beshoy & Marina | Friends Gathering</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body class="invitation-locked">
-
-  <!-- =====================================================
-       OPENING SCREEN
-       The website is hidden behind the curtains until
-       the visitor presses OPEN INVITATION.
-       The same click starts the music, which avoids
-       browser autoplay restrictions.
-       ===================================================== -->
-  <div id="opening-screen" aria-label="Open wedding invitation">
-
-    <div class="opening-glow"></div>
-
-    <div class="opening-curtain left"></div>
-    <div class="opening-curtain right"></div>
-
-    <div class="opening-stars" aria-hidden="true">
-      <span class="opening-star">✦</span>
-      <span class="opening-star">✧</span>
-      <span class="opening-star">✦</span>
-      <span class="opening-star">✧</span>
-      <span class="opening-star">⋆</span>
-      <span class="opening-star">⋆</span>
-    </div>
-
-    <div class="opening-content">
-
-      <p class="opening-small">A SPECIAL NIGHT WITH FRIENDS</p>
-
-      <div class="opening-monogram">
-        B <span class="opening-heart">♥</span> M
-      </div>
-
-      <div class="opening-title">
-        Friends Gathering
-      </div>
-
-      <button
-        id="openInvitation"
-        class="open-invitation"
-        type="button"
-      >
-        OPEN INVITATION
-      </button>
-
-      <p class="opening-hint">
-        Tap to open ♡
-      </p>
-
-    </div>
-  </div>
+/*
+  ============================================
+  BESH0Y & MARINA — GOODBYE SINGLE LIFE
+  ============================================
 
+  EVENT:
+  26 September 2026 — 6:00 PM
 
-  <div class="petals" aria-hidden="true"></div>
+  IMPORTANT:
+  Music is NOT forced with autoplay.
+  It starts from the user's click on
+  "OPEN INVITATION", which is the reliable
+  way to satisfy browser audio policies.
+*/
 
-  <header class="nav">
-    <a class="brand" href="#home">B <span>♥</span> M</a>
-
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#details">Details</a>
-      <a href="#gallery">Gallery</a>
-      <a class="nav-rsvp" href="#rsvp">RSVP</a>
-    </nav>
+const EVENT_DATE = "2026-09-26T18:00:00";
 
-    <a class="friends-pill" href="#rsvp">Friends ♡</a>
-  </header>
-
 
-  <main id="home">
-
-    <!-- HERO -->
-    <section class="hero section">
-
-      <!-- Dancing figure -->
-      <div class="dancer-wrap reveal">
-        <div class="dancer-glow"></div>
-
-        <img
-          class="dancer"
-          src="images/dancer.png"
-          alt="Dancing"
-          decoding="async"
-        >
+/* =========================================================
+   COUNTDOWN
+========================================================= */
 
-        <div class="dancer-caption">
-          <span>Dance</span>
-          <span>Laugh</span>
-          <span>Henna</span>
-          <span>Repeat ♡</span>
-        </div>
-      </div>
+const countdown = () => {
+  const target = new Date(EVENT_DATE).getTime();
+  const now = Date.now();
 
+  let diff = target - now;
 
-      <!-- Main invitation text -->
-      <div class="hero-copy reveal">
+  if (diff < 0) {
+    diff = 0;
+  }
 
-        <p class="eyebrow">
-          YOU'RE INVITED TO OUR
-        </p>
+  const days = Math.floor(diff / 86400000);
 
-        <h1>
-          Friends
-          <br>
-          <span>Gathering</span>
-        </h1>
+  const hours = Math.floor(
+    (diff % 86400000) / 3600000
+  );
 
-        <p class="subtitle">
-          GOOD VIBES · GOOD COMPANY
-          <br>
-          BEAUTIFUL MEMORIES
-        </p>
+  const minutes = Math.floor(
+    (diff % 3600000) / 60000
+  );
 
-        <p class="couple-script">
-          Beshoy &amp; Marina
-        </p>
+  const seconds = Math.floor(
+    (diff % 60000) / 1000
+  );
 
-        <div class="ornament">
-          <i></i>
-          <span>♥</span>
-          <i></i>
-        </div>
+  document.getElementById("days").textContent =
+    String(days).padStart(2, "0");
 
-        <p class="small-caps">
-          A NIGHT WITH FRIENDS
-        </p>
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
 
-      </div>
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
 
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2, "0");
+};
 
-      <!-- Couple photo -->
-      <div class="hero-photo reveal delay">
+countdown();
 
-        <img
-          src="images/coupleee.png"
-          alt="Beshoy and Marina"
-          decoding="async"
-        >
+setInterval(countdown, 1000);
 
-        <div class="photo-frame"></div>
 
-        <p class="side-note">
-          Good<br>
-          Friends<br>
-          Forever ♡
-        </p>
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
 
-      </div>
+const observer = new IntersectionObserver(
+  (entries) => {
 
+    entries.forEach((entry) => {
 
-      <!-- Countdown -->
-      <div class="countdown reveal">
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
 
-        <div>
-          <strong id="days">00</strong>
-          <span>Days</span>
-        </div>
+    });
 
-        <div>
-          <strong id="hours">00</strong>
-          <span>Hours</span>
-        </div>
+  },
+  {
+    threshold: 0.12
+  }
+);
 
-        <div>
-          <strong id="minutes">00</strong>
-          <span>Minutes</span>
-        </div>
+document
+  .querySelectorAll(".reveal")
+  .forEach((element) => {
+    observer.observe(element);
+  });
 
-        <div>
-          <strong id="seconds">00</strong>
-          <span>Seconds</span>
-        </div>
 
-      </div>
+/* =========================================================
+   FLOATING PETALS
+========================================================= */
 
-      <p class="count-label">
-        COUNTING DOWN TO A SPECIAL NIGHT ♡
-      </p>
+const petalsContainer =
+  document.querySelector(".petals");
 
-    </section>
+for (let i = 0; i < 22; i++) {
 
+  const petal =
+    document.createElement("span");
 
-    <!-- EVENT DETAILS -->
-    <section
-      id="details"
-      class="details-card section reveal"
-    >
+  petal.className = "petal";
 
-      <div class="detail">
+  petal.style.left =
+    Math.random() * 100 + "vw";
 
-        <span class="icon">♧</span>
+  petal.style.setProperty(
+    "--drift",
+    Math.random() * 220 - 110 + "px"
+  );
 
-        <p class="label">
-          DATE
-        </p>
+  petal.style.animationDuration =
+    8 + Math.random() * 9 + "s";
 
-        <h3>
-          26 Sep
-        </h3>
+  petal.style.animationDelay =
+    -Math.random() * 15 + "s";
 
-        <p>
-          Save the date ♡
-        </p>
+  petal.style.transform =
+    `rotate(${Math.random() * 360}deg)`;
 
-      </div>
+  petalsContainer.appendChild(petal);
+}
 
 
-      <div class="detail">
+/* =========================================================
+   MUSIC
+========================================================= */
 
-        <span class="icon">◷</span>
+const music =
+  document.getElementById("music");
 
-        <p class="label">
-          TIME
-        </p>
+const musicButton =
+  document.getElementById("musicButton");
 
-        <h3>
-          6:00 PM
-        </h3>
+let playing = false;
 
-        <p>
-          Come ready to celebrate
-        </p>
+const updateMusicButton = () => {
 
-      </div>
+  musicButton.innerHTML = playing
+    ? '♫ <span>PAUSE</span>'
+    : '♫ <span>MUSIC</span>';
 
+};
 
-      <a
-        href="https://maps.app.goo.gl/QYxfzFDE1VVKcM34A?g_st=iw"
-        target="_blank"
-        rel="noopener"
-        class="detail location-link"
-      >
 
-        <span class="icon">⌖</span>
+const startMusic = async () => {
 
-        <p class="label">
-          LOCATION
-        </p>
+  try {
 
-        <h3>
-          PIANISTA Cafe
-        </h3>
+    await music.play();
 
-        <p>
-          Ezbet El Nakhl
-        </p>
+    playing = true;
 
-      </a>
+    updateMusicButton();
 
-    </section>
+    return true;
 
+  } catch (error) {
 
-    <!-- VIBES -->
-    <section class="vibes section">
+    console.warn(
+      "Music could not start:",
+      error
+    );
 
-      <div class="vibe reveal">
+    return false;
 
-        <span>✺</span>
+  }
 
-        <h3>
-          HENNA VIBES
-        </h3>
+};
 
-        <p>
-          Traditional touches, beautiful details.
-        </p>
 
-      </div>
+/* =========================================================
+   OPEN INVITATION
+========================================================= */
 
+const openingScreen =
+  document.getElementById("opening-screen");
 
-      <div class="vibe reveal">
+const openInvitation =
+  document.getElementById("openInvitation");
 
-        <span>♫</span>
+let invitationIsOpening = false;
 
-        <h3>
-          MUSIC &amp; DANCE
-        </h3>
+const finishOpening = () => {
 
-        <p>
-          Good music, dancing and unforgettable laughs.
-        </p>
+  openingScreen.setAttribute(
+    "aria-hidden",
+    "true"
+  );
 
-      </div>
+  openingScreen.remove();
 
+};
 
-      <div class="vibe reveal">
+const openTheInvitation = () => {
 
-        <span>♨</span>
+  /*
+    Do not let repeated taps queue multiple animations or audio requests.
+  */
 
-        <h3>
-          DELICIOUS FOOD
-        </h3>
+  if (invitationIsOpening) {
+    return;
+  }
 
-        <p>
-          Good food, great company.
-        </p>
+  invitationIsOpening = true;
+  openInvitation.disabled = true;
 
-      </div>
+  /*
+    Start music directly from the visitor's tap so browser audio policies
+    still allow it, but never wait for buffering or decoding before showing
+    the opening animation. On slower phones, music.play() may take a while
+    to resolve.
 
-    </section>
+    startMusic() handles a missing or unsupported audio file itself.
+  */
 
+  void startMusic();
 
-    <!-- LOCATION BUTTON -->
-    <section class="location-button-section section reveal">
 
-      <a
-        class="location-button"
-        href="https://maps.app.goo.gl/QYxfzFDE1VVKcM34A?g_st=iw"
-        target="_blank"
-        rel="noopener"
-      >
-        <span class="location-icon">⌖</span>
-        <span class="location-text">PIANISTA Cafe • Ezbet El Nakhl</span>
-        <span class="location-subtext">Open in Google Maps</span>
-      </a>
+  /*
+    Open the interface immediately so the tap always gets a prompt response.
+  */
 
-    </section>
+  openingScreen.classList.add("is-opening");
 
+  document.body.classList.remove(
+    "invitation-locked"
+  );
 
-    <!-- GALLERY -->
-    <section
-      id="gallery"
-      class="gallery section"
-    >
 
-      <!-- <div class="section-heading reveal">
 
-        <p class="eyebrow">
-          OUR FAVORITE MOMENTS
-        </p>
+  /*
+    Free the overlay and its animations after the curtains finish opening.
+  */
 
-        <h2>
-          Gallery
-        </h2>
+  setTimeout(finishOpening, 1600);
 
-      </div>
+};
 
 
-      <div class="gallery-grid">
+openInvitation.addEventListener(
+  "click",
+  openTheInvitation
+);
 
-        <div class="gallery-item large reveal">
-          <img
-            src="images/couple1.jpg"
-            alt="Beshoy and Marina"
-            loading="lazy"
-            decoding="async"
-          >
-        </div>
 
-        <div class="gallery-item reveal">
-          <img
-            src="images/photo-2.jpg"
-            alt="Friends gathering memory"
-            loading="lazy"
-            decoding="async"
-          >
-        </div>
+/* =========================================================
+   MUSIC BUTTON AFTER OPENING
+========================================================= */
 
-        <div class="gallery-item reveal">
-          <img
-            src="images/photo-3.jpg"
-            alt="Celebration detail"
-            loading="lazy"
-            decoding="async"
-          >
-        </div>
+musicButton.addEventListener(
+  "click",
+  async () => {
+    if (!playing) {
+      try {
+        await music.play();
+        playing = true;
+        updateMusicButton();
+      } catch (error) {
+        console.warn("Music could not start:", error);
+        alert("Add your music file at audio/music.m4a first.");
+      }
+      return;
+    }
 
-        <div class="gallery-item reveal">
-          <img
-            src="images/photo-4.jpg"
-            alt="Beautiful memory"
-            loading="lazy"
-            decoding="async"
-          >
-        </div>
+    music.pause();
+    playing = false;
+    updateMusicButton();
+  }
+);
 
-        <div class="gallery-item reveal">
-          <img
-            src="images/photo-5.jpg"
-            alt="Beautiful memory"
-            loading="lazy"
-            decoding="async"
-          >
-        </div>
 
-      </div> -->
+/* =========================================================
+   SAFETY:
+   If the audio file is missing, don't break the website.
+========================================================= */
 
-    </section>
+music.addEventListener(
+  "error",
+  () => {
 
+    playing = false;
 
-    <!-- RSVP -->
-    <section
-      id="rsvp"
-      class="rsvp section reveal"
-    >
+    updateMusicButton();
 
-      <div class="rsvp-card">
+    console.warn(
+      "Music file not found. Expected: audio/music.m4a"
+    );
 
-        <p class="eyebrow">
-          COME CELEBRATE WITH US
-        </p>
-
-        <h2>
-          Will you join us?
-        </h2>
-
-        <p>
-          Your presence will make our night
-          even more special.
-        </p>
-
-        <a
-          class="rsvp-button"
-          href="https://wa.me/?text=I%20would%20love%20to%20attend%20Beshoy%20and%20Marina%27s%20friends%20gathering"
-          target="_blank"
-          rel="noopener"
-        >
-          CONFIRM YOUR ATTENDANCE ♥
-        </a>
-
-        <span class="rsvp-note">
-          See you there ♡
-        </span>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
-  <footer>
-
-    <div class="footer-mark">
-      B <span>♥</span> M
-    </div>
-
-    <p>
-      GOOD FRIENDS. BEAUTIFUL NIGHTS.
-      <br>
-      FOREVER GRATEFUL.
-    </p>
-
-    <small>
-      BESHOY &amp; MARINA · 2026
-    </small>
-
-  </footer>
-
-
-  <!-- MUSIC -->
-  <button
-    class="music-button"
-    id="musicButton"
-    aria-label="Toggle music"
-  >
-    ♫ <span>MUSIC</span>
-  </button>
-
-  <audio
-    id="music"
-    loop
-    preload="metadata"
-  >
-    <source
-      src="audio/music.m4a"
-      type="audio/mp4"
-    >
-  </audio>
-
-
-  <script src="script.js"></script>
-
-</body>
-</html>
+  }
+);
