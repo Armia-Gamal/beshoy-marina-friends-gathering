@@ -4,7 +4,7 @@
   ============================================
 
   EVENT:
-  25 September 2026 — 5:00 PM
+  26 September 2026 — 6:00 PM
 
   IMPORTANT:
   Music is NOT forced with autoplay.
@@ -13,7 +13,7 @@
   way to satisfy browser audio policies.
 */
 
-const EVENT_DATE = "2026-09-25T17:00:00";
+const EVENT_DATE = "2026-09-26T18:00:00";
 
 
 /* =========================================================
