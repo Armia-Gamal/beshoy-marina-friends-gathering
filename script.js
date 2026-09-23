@@ -13,7 +13,7 @@
   way to satisfy browser audio policies.
 */
 
-const EVENT_DATE = "2026-09-26T18:00:00";
+const EVENT_DATE = "2026-09-26T17:00:00";
 
 
 /* =========================================================
